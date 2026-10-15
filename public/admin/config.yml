@@ -1,0 +1,92 @@
+# Panel de Camión Oriental (Decap CMS)
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Nuevo camión: {{slug}}'
+    update: 'Actualizar camión: {{slug}}'
+    delete: 'Borrar camión: {{slug}}'
+    uploadMedia: 'Subir foto {{path}}'
+    deleteMedia: 'Borrar foto {{path}}'
+
+locale: es
+site_url: /
+display_url: /
+logo_url: /logo.png
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: camiones
+    label: Camiones
+    label_singular: Camión
+    description: Cada camión que publiques aquí aparece en el catálogo de la página en uno o dos minutos.
+    folder: content/camiones
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: '{{marca}}-{{modelo}}-{{anio}}'
+    summary: '{{marca}} {{modelo}} {{anio}} · {{estado}}'
+    sortable_fields: ['fecha', 'marca', 'anio', 'precio']
+    view_filters:
+      - {label: Nuevos, field: estado, pattern: Nuevo}
+      - {label: Usados, field: estado, pattern: Usado}
+      - {label: Vendidos, field: vendido, pattern: true}
+    fields:
+      - {name: ejemplo, widget: hidden, default: false}
+      - {label: Estado, name: estado, widget: select, options: [Nuevo, Usado], default: Usado}
+      - {label: Marca, name: marca, widget: string, hint: 'Ej. Kenworth, International, Freightliner, Hino, JAC, Chevrolet'}
+      - {label: Modelo, name: modelo, widget: string, hint: 'Ej. T800, 7400, NPR'}
+      - {label: Año, name: anio, widget: number, value_type: int, min: 1970, max: 2030}
+      - label: Tipo de camión
+        name: tipo
+        widget: select
+        options: [Tractocamión, Doble troque, Camión sencillo, Turbo, Volqueta, Furgón, Planchón, Grúa, Otro]
+      - {label: Carrocería, name: carroceria, widget: string, required: false, hint: 'Ej. Furgón refrigerado (thermo), Estacas, Volco'}
+      - {label: Configuración, name: configuracion, widget: select, options: ['4x2', '6x2', '6x4', '8x4', '4x4', '6x6'], required: false}
+      - {label: Kilometraje (km), name: kilometraje, widget: number, value_type: int, min: 0, hint: 'Solo números, sin puntos. 0 si es nuevo.'}
+      - {label: Precio (pesos), name: precio, widget: number, value_type: int, min: 0, required: false, hint: 'Solo números, sin puntos. Déjalo vacío para mostrar "Precio a consultar".'}
+      - {label: Precio negociable, name: negociable, widget: boolean, default: false}
+      - {label: Motor / cilindraje, name: motor, widget: string, required: false, hint: 'Ej. 4.000 cc, Cummins ISX 450 HP'}
+      - {label: Transmisión, name: transmision, widget: string, required: false, hint: 'Ej. Mecánica 6 velocidades'}
+      - {label: SOAT vigente hasta, name: soat, widget: string, required: false, hint: 'Ej. 24 de septiembre de 2027'}
+      - {label: Técnico-mecánica vigente hasta, name: tecnomecanica, widget: string, required: false}
+      - {label: Llantas, name: llantas, widget: string, required: false, hint: 'Ej. 80 % de vida útil'}
+      - {label: Medidas internas de la carrocería, name: medidas, widget: string, required: false, hint: 'Ej. Alto 1,90 m × ancho 1,84 m × largo 3,84 m'}
+      - label: Lo que más destaca
+        name: caracteristicas
+        widget: list
+        required: false
+        summary: '{{fields.item}}'
+        hint: 'Una línea por cada cosa: thermo, cabina, accesorios, mantenimientos…'
+        field: {label: Característica, name: item, widget: string}
+      - {label: Ciudad donde está el camión, name: ubicacion, widget: string, required: false}
+      - label: Fotos
+        name: fotos
+        widget: list
+        collapsed: false
+        summary: '{{fields.foto}}'
+        hint: 'La primera foto es la portada. Arrastra para cambiar el orden. Puedes subir fotos verticales u horizontales: la página las acomoda sola.'
+        field: {label: Foto, name: foto, widget: image, choose_url: false}
+      - {label: Descripción, name: descripcion, widget: text, required: false, hint: 'Estado general, llantas, mantenimientos, papeles al día, lo que quieras contar.'}
+      - {label: Peritaje hecho por Camión Oriental, name: peritaje, widget: boolean, default: true}
+      - {label: Destacado (sale primero y en la portada), name: destacado, widget: boolean, default: false}
+      - {label: Vendido (se queda visible con la etiqueta VENDIDO), name: vendido, widget: boolean, default: false}
+      - {label: Fecha de publicación, name: fecha, widget: datetime}
+
+  - name: ajustes
+    label: Datos de contacto
+    files:
+      - name: ajustes
+        label: WhatsApp, ciudad y redes
+        file: content/ajustes.json
+        fields:
+          - {label: WhatsApp (con 57 adelante, sin espacios ni +), name: whatsapp, widget: string, hint: 'Ej. 573101234567'}
+          - {label: Teléfono como se ve en la página, name: telefono_visible, widget: string, hint: 'Ej. +57 310 123 4567'}
+          - {label: Correo, name: correo, widget: string, required: false}
+          - {label: Ciudad, name: ciudad, widget: string}
+          - {label: Dirección, name: direccion, widget: string, required: false}
+          - {label: Horario, name: horario, widget: string, required: false}
+          - {label: Instagram (enlace completo), name: instagram, widget: string, required: false}
+          - {label: Facebook (enlace completo), name: facebook, widget: string, required: false}

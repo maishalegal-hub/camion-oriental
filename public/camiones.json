@@ -1,0 +1,47 @@
+[
+ {
+  "ejemplo": false,
+  "estado": "Usado",
+  "marca": "Hino",
+  "modelo": "300 Dutro Pro",
+  "anio": 2019,
+  "tipo": "Furgón",
+  "carroceria": "Furgón refrigerado (thermo)",
+  "configuracion": "4x2",
+  "kilometraje": 375600,
+  "motor": "4.000 cc",
+  "transmision": "",
+  "ubicacion": "",
+  "precio": 135990000,
+  "negociable": true,
+  "soat": "24 de septiembre de 2026",
+  "tecnomecanica": "24 de septiembre de 2026",
+  "llantas": "80 % de vida útil",
+  "medidas": "Alto 1,90 m × ancho 1,84 m × largo 3,84 m",
+  "caracteristicas": [
+   "Thermo de congelación hasta −25 °C",
+   "Furgón isotérmico con puerta lateral",
+   "Cortina térmica en la puerta trasera",
+   "Bomper y guardafangos en acero inoxidable"
+  ],
+  "peritaje": true,
+  "destacado": true,
+  "vendido": false,
+  "fotos": [
+   "/uploads/hino-300-dutro-2019-01.jpg",
+   "/uploads/hino-300-dutro-2019-02.jpg",
+   "/uploads/hino-300-dutro-2019-03.jpg",
+   "/uploads/hino-300-dutro-2019-04.jpg",
+   "/uploads/hino-300-dutro-2019-05.jpg",
+   "/uploads/hino-300-dutro-2019-06.jpg",
+   "/uploads/hino-300-dutro-2019-07.jpg",
+   "/uploads/hino-300-dutro-2019-08.jpg",
+   "/uploads/hino-300-dutro-2019-09.jpg",
+   "/uploads/hino-300-dutro-2019-10.jpg"
+  ],
+  "descripcion": "Hino 300 Dutro Pro 2019 con furgón refrigerado, listo para transporte de alimentos y carga perecedera. Kilometraje aproximado de 375.600 km. Precio negociable.",
+  "fecha": "2026-10-15T16:45:00-05:00",
+  "id": "hino-300-dutro-pro-2019",
+  "referencia": "CO-001"
+ }
+]
