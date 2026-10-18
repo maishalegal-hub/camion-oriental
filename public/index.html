@@ -72,7 +72,8 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .nav{display:flex;gap:4px;margin-left:auto}
 .nav a{text-decoration:none;font-weight:600;color:var(--muted);padding:.5em .8em;border-radius:8px}
 .nav a:hover{color:var(--ink);background:var(--surface-2)}
-.top .btn-wa{padding:.6em 1em}
+.top .btn-wa,.top .top-cat{padding:.6em 1em}
+@media (max-width:1100px){.top .top-cat{display:none}}
 .menu-btn{display:none;margin-left:auto;background:none;border:0;padding:10px;cursor:pointer}
 .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
 @media (max-width:860px){
@@ -84,32 +85,68 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
   .brand img{height:44px}
 }
 
-/* Portada */
-.hero{position:relative;overflow:hidden;background:var(--surface)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-block:56px 120px;position:relative;z-index:1}
-.hero h1{font-size:clamp(2.7rem,6.2vw,5.2rem)}
-.hero h1 em{color:var(--red);font-style:italic}
-.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:34em;margin:18px 0 26px}
+/* Portada: foto a todo lo ancho, texto sobre degradado */
+.hero{position:relative;overflow:hidden;background:#0b1a2a;color:#fff;isolation:isolate}
+.hero .bg{position:absolute;inset:0;z-index:-2}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:70% 60%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,18,32,.92) 0%,rgba(6,18,32,.78) 38%,rgba(6,18,32,.15) 72%,rgba(6,18,32,0) 100%)}
+.hero .wrap{padding-block:96px 120px;min-height:0}
+.hero .txt{max-width:600px}
+.hero .eyebrow{color:#7fd6ff}
+.hero h1{font-size:clamp(2.8rem,6.4vw,5.4rem);margin-top:12px;color:#fff}
+.hero h1 em{color:#ff5a60;font-style:italic}
+.hero p.lead{font-size:1.15rem;color:#d3e2ef;max-width:32em;margin:18px 0 26px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
-.hero .checks{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;padding:0;list-style:none;font-weight:600;font-size:.95rem}
-.hero .checks li{display:flex;align-items:center;gap:6px}
-.hero .checks svg{color:var(--ok);width:18px;height:18px}
-.wave{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:150px;z-index:0;pointer-events:none}
-.feat{min-width:0}
-.feat .card{box-shadow:0 20px 50px rgba(11,42,71,.18);transform:rotate(-1deg)}
-.feat-label{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.1rem;color:var(--deep);margin:0 0 10px 4px}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:36px 110px}.feat .card{transform:none}}
+.hero .btn-ghost{background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.2)}
+.hero .pin{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:84px;display:flex;align-items:center;gap:12px;background:rgba(6,18,32,.72);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 14px 10px 10px;color:#fff;text-decoration:none;cursor:pointer;font:inherit;text-align:left}
+.hero .pin img{width:64px;height:48px;object-fit:cover;border-radius:6px}
+.hero .pin small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7fd6ff}
+.hero .pin b{font-family:var(--display);font-style:italic;font-size:1.2rem;line-height:1.1}
+.hero .pin span{display:block;font-size:.9rem;color:#d3e2ef;font-variant-numeric:tabular-nums}
+.wave{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:90px;z-index:0;pointer-events:none}
+@media (max-width:760px){
+  .hero::before{background:linear-gradient(180deg,rgba(6,18,32,.55) 0%,rgba(6,18,32,.88) 55%,rgba(6,18,32,.96) 100%)}
+  .hero .bg img{object-position:75% 50%}
+  .hero .wrap{padding-block:130px 24px}
+  .hero .pin{position:relative;right:auto;bottom:auto;margin:0 max(16px,env(safe-area-inset-right,0px)) 96px max(16px,env(safe-area-inset-left,0px));width:calc(100% - 32px)}
+}
 
-/* Franja de confianza */
-.trust{background:var(--band);color:var(--band-fg)}
-.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-block:6px}
-.trust .t{display:flex;gap:12px;align-items:flex-start;padding:20px 18px;border-left:1px solid var(--band-line)}
-.trust .t:first-child{border-left:0;padding-left:0}
-.trust svg{width:28px;height:28px;color:var(--sky);flex:none;margin-top:2px}
-.trust b{display:block;font-family:var(--display);font-style:italic;font-size:1.25rem;line-height:1.1}
-.trust span{font-size:.9rem;color:var(--band-muted)}
-@media (max-width:900px){.trust .wrap{grid-template-columns:1fr 1fr}.trust .t:nth-child(3){border-left:0;padding-left:0}.trust .t{border-top:1px solid var(--band-line)}.trust .t:nth-child(-n+2){border-top:0}}
-@media (max-width:520px){.trust .wrap{grid-template-columns:1fr}.trust .t{border-left:0;padding-left:0;border-top:1px solid var(--band-line)}.trust .t:first-child{border-top:0}}
+/* Nuestras marcas */
+.brands{background:var(--surface)}
+.brands .sec-head{justify-content:center;text-align:center}
+.brands .sec-head p{margin-inline:auto}
+.brand-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.bt{appearance:none;border:1px solid var(--line);background:var(--bg);border-radius:var(--r);padding:28px 12px 18px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink)}
+.bt:hover{transform:translateY(-3px);border-color:var(--sky);box-shadow:var(--shadow)}
+.bt .wm{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:.08em;line-height:1;text-transform:uppercase;min-height:1.1em;display:flex;align-items:center}
+.bt .wm img{max-height:44px;width:auto}
+.bt .n{font-size:.82rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.bt .n.on{color:var(--ok)}
+.bt-used{grid-column:1/-1;flex-direction:row;justify-content:space-between;text-align:left;padding:20px 24px;background:var(--band);border-color:var(--band);color:var(--band-fg)}
+.bt-used:hover{border-color:var(--sky)}
+.bt-used b{font-family:var(--display);font-style:italic;font-size:1.6rem}
+.bt-used span{color:var(--band-muted);display:block;font-size:.95rem}
+.bt-used .go{font-weight:700;color:#7fd6ff;white-space:nowrap}
+@media (max-width:1000px){.brand-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.brand-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.bt .wm{font-size:1.45rem;letter-spacing:.04em}.bt-used{flex-direction:column;align-items:flex-start}}
+
+/* Quiénes somos: bloque oscuro */
+.about{background:var(--band);color:var(--band-fg)}
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.about .plate{display:inline-block;background:#fff;border-radius:16px;padding:16px 22px}
+.about .plate img{height:120px;width:auto}
+.about h2{font-size:clamp(2.2rem,4.5vw,3.4rem);margin-top:22px}
+.about .intro p{color:var(--band-muted);font-size:1.08rem;max-width:32em}
+.trust4{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--band-line)}
+.trust4 .t{display:flex;gap:12px;align-items:flex-start;padding:22px 18px 22px 0;border-bottom:1px solid var(--band-line)}
+.trust4 .t:nth-child(odd){border-right:1px solid var(--band-line)}
+.trust4 .t:nth-child(even){padding-left:22px}
+.trust4 svg{width:30px;height:30px;color:var(--sky);flex:none;margin-top:2px}
+.trust4 b{display:block;font-family:var(--display);font-style:italic;font-size:1.35rem;line-height:1.1;margin-bottom:4px}
+.trust4 span{font-size:.92rem;color:var(--band-muted)}
+@media (max-width:900px){.about .wrap{grid-template-columns:1fr;gap:32px}}
+@media (max-width:520px){.trust4{grid-template-columns:1fr}.trust4 .t:nth-child(odd){border-right:0}.trust4 .t:nth-child(even){padding-left:0}}
 
 section{padding-block:72px}
 .sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
@@ -199,19 +236,23 @@ form.f{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)
 @media (max-width:900px){.sell .wrap{grid-template-columns:1fr;gap:28px}}
 @media (max-width:520px){form.f{grid-template-columns:1fr;padding:20px}}
 
-/* Contacto */
-footer{background:var(--band);color:var(--band-fg)}
-footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;padding-block:56px 40px}
+/* Pie de página por columnas */
+footer{background:#071523;color:var(--band-fg)}
+footer .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1.2fr;gap:32px;padding-block:56px 40px}
 footer .plate{display:inline-block;background:#fff;border-radius:12px;padding:10px 14px}
-footer .plate img{height:76px;width:auto}
-footer h3{font-size:1.5rem;margin-bottom:12px}
+footer .plate img{height:72px;width:auto}
+footer h4{font-family:var(--body);font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7fd6ff;margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer ul a,footer ul button{color:var(--band-fg);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font:inherit;text-align:left;opacity:.85}
+footer ul a:hover,footer ul button:hover{opacity:1;text-decoration:underline}
 footer p{margin:0 0 6px;color:var(--band-muted)}
-footer .num{font-family:var(--display);font-weight:700;font-size:1.8rem;color:var(--band-fg);letter-spacing:.02em;user-select:all}
+footer .num{font-family:var(--display);font-weight:700;font-size:1.7rem;color:var(--band-fg);letter-spacing:.02em;user-select:all;margin-bottom:10px}
 footer a{color:var(--band-fg)}
 .copy{border-top:1px solid var(--band-line)}
-.copy .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-block:18px;font-size:.85rem;color:var(--band-muted);grid-template-columns:none}
+.copy .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-block:18px;font-size:.85rem;color:var(--band-muted)}
 .copy a{color:var(--band-muted)}
-@media (max-width:820px){footer .wrap{grid-template-columns:1fr}}
+@media (max-width:1000px){footer .cols{grid-template-columns:1fr 1fr}footer .cols>div:first-child{grid-column:1/-1}}
+@media (max-width:520px){footer .cols{grid-template-columns:1fr}}
 
 .float-wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:60px;height:60px;border-radius:50%;background:#1faa53;color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .float-wa svg{width:32px;height:32px}
@@ -292,50 +333,68 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
   <div class="wrap">
     <a class="brand" href="#inicio" aria-label="Camión Oriental, inicio"><img src="logo.png" alt="Camión Oriental · Rodando contigo" width="640" height="335"></a>
     <nav class="nav" id="nav">
-      <a href="#catalogo">Catálogo</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#catalogo">Camiones</a>
       <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
       <a href="#vender">Vende tu camión</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Escríbenos</a>
+    <a class="btn btn-red top-cat" href="#catalogo">Ver catálogo</a>
+    <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a>
     <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <main id="inicio">
   <section class="hero" style="padding:0">
+    <div class="bg"><img src="hero.jpg" alt="" width="1200" height="660" fetchpriority="high"></div>
     <div class="wrap">
-      <div>
+      <div class="txt">
         <div class="eyebrow">Compra y venta de camiones · Nuevos y usados</div>
-        <h1 style="margin-top:12px">Tu próximo camión, <em>revisado al 100%.</em></h1>
-        <p class="lead">Le hacemos peritaje a cada camión antes de publicarlo y te acompañamos en toda la compra, desde la primera llamada hasta el traspaso. Y si quieres vender el tuyo, lo publicamos y lo movemos con nuestra lista de compradores.</p>
+        <h1>Tu próximo camión, <em>revisado al 100%.</em></h1>
+        <p class="lead">Le hacemos peritaje a cada camión antes de publicarlo y te acompañamos en toda la compra. Y si quieres vender el tuyo, lo movemos con nuestra lista de compradores.</p>
         <div class="ctas">
           <a class="btn btn-red" href="#catalogo">Ver camiones disponibles</a>
-          <a class="btn btn-line" href="#vender">Quiero vender mi camión</a>
+          <a class="btn btn-ghost" href="#vender">Quiero vender mi camión</a>
         </div>
-        <ul class="checks">
-          <li><svg><use href="#i-check"/></svg>Peritaje propio</li>
-          <li><svg><use href="#i-check"/></svg>Varias marcas</li>
-          <li><svg><use href="#i-check"/></svg>Acompañamiento en el traspaso</li>
-        </ul>
       </div>
-      <div class="feat" id="feat"></div>
     </div>
-    <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 150V96C240 30 520 10 820 58c230 37 420 40 620-20v112Z" fill="var(--bg)"/>
-      <path d="M0 98C240 32 520 12 820 60c230 37 420 40 620-20" fill="none" stroke="var(--sky)" stroke-width="14" stroke-linecap="round"/>
-      <path d="M0 122C260 70 520 52 800 88c240 30 440 30 640-14" fill="none" stroke="var(--deep)" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+    <button type="button" class="pin" id="pin" hidden></button>
+    <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 90V60C240 14 520 0 820 34c230 26 420 28 620-14v70Z" fill="var(--surface)"/>
+      <path d="M0 62C240 16 520 2 820 36c230 26 420 28 620-14" fill="none" stroke="var(--sky)" stroke-width="10" stroke-linecap="round"/>
     </svg>
   </section>
 
-  <div class="trust">
+  <section class="brands" id="marcas" style="padding-top:40px">
     <div class="wrap">
-      <div class="t"><svg><use href="#i-wrench"/></svg><div><b>Hacemos el peritaje</b><span>Revisamos motor, caja, chasis, frenos y papeles.</span></div></div>
-      <div class="t"><svg><use href="#i-shield"/></svg><div><b>Revisados al 100%</b><span>Ningún camión sale publicado sin pasar la revisión.</span></div></div>
-      <div class="t"><svg><use href="#i-hand"/></svg><div><b>Te acompañamos</b><span>En la negociación, el pago y el traspaso.</span></div></div>
-      <div class="t"><svg><use href="#i-rocket"/></svg><div><b>Vendemos el tuyo rápido</b><span>Con nuestra base de clientes y CRM.</span></div></div>
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Nuestras marcas</div>
+          <h2 style="margin-top:8px">Compramos y vendemos camiones de</h2>
+          <p>Toca una marca para ver los camiones que tenemos disponibles de ella.</p>
+        </div>
+      </div>
+      <div class="brand-grid" id="brand-grid"></div>
     </div>
-  </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="wrap">
+      <div class="intro">
+        <span class="plate"><img src="logo.png" alt="Camión Oriental · Rodando contigo" width="640" height="335"></span>
+        <h2>Rodando contigo en cada negocio</h2>
+        <p>En Camión Oriental compramos, vendemos y peritamos camiones nuevos y usados. Revisamos cada vehículo antes de publicarlo, te acompañamos en la negociación, el pago y el traspaso, y movemos los camiones de nuestros clientes con una base de compradores que conocemos.</p>
+      </div>
+      <div class="trust4">
+        <div class="t"><svg><use href="#i-wrench"/></svg><div><b>Hacemos el peritaje</b><span>Motor, caja, chasis, frenos y papeles.</span></div></div>
+        <div class="t"><svg><use href="#i-shield"/></svg><div><b>Revisados al 100%</b><span>Ningún camión se publica sin pasar la revisión.</span></div></div>
+        <div class="t"><svg><use href="#i-hand"/></svg><div><b>Te acompañamos</b><span>En la negociación, el pago y el traspaso.</span></div></div>
+        <div class="t"><svg><use href="#i-rocket"/></svg><div><b>Vendemos el tuyo rápido</b><span>Con nuestra base de clientes y CRM.</span></div></div>
+      </div>
+    </div>
+  </section>
 
   <section id="catalogo">
     <div class="wrap">
@@ -455,23 +514,41 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
 </main>
 
 <footer id="contacto">
-  <div class="wrap">
+  <div class="wrap cols">
     <div>
       <span class="plate"><img src="logo.png" alt="Camión Oriental" width="640" height="335"></span>
-      <p style="margin-top:16px;max-width:30em">Compra y venta de camiones nuevos y usados. Peritaje, publicación y acompañamiento en todo el proceso.</p>
+      <p style="margin-top:16px;max-width:26em">Compra y venta de camiones nuevos y usados. Peritaje, publicación y acompañamiento en todo el proceso.</p>
+      <p id="c-redes" style="margin-top:12px"></p>
     </div>
     <div>
-      <h3>Escríbenos</h3>
+      <h4>Nuestras marcas</h4>
+      <ul id="f-brands"></ul>
+    </div>
+    <div>
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Peritaje de camiones</a></li>
+        <li><a href="#catalogo">Camiones revisados</a></li>
+        <li><a href="#servicios">Acompañamiento en la compra</a></li>
+        <li><a href="#vender">Vende tu camión</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Sobre nosotros</h4>
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#proceso">Cómo vendemos tu camión</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contáctanos</h4>
       <p class="num" id="c-tel"></p>
-      <p><a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener" style="margin-top:8px"><svg><use href="#i-wa"/></svg>Abrir WhatsApp</a></p>
+      <p><a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Abrir WhatsApp</a></p>
       <p id="c-mail"></p>
-    </div>
-    <div>
-      <h3>Dónde estamos</h3>
       <p id="c-ciudad"></p>
       <p id="c-dir"></p>
       <p id="c-hor"></p>
-      <p id="c-redes"></p>
     </div>
   </div>
   <div class="copy"><div class="wrap"><span>© <span id="yr"></span> Camión Oriental · Rodando contigo</span><a href="admin/" rel="nofollow">Panel</a></div></div>
@@ -600,12 +677,47 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     $('#count').textContent = n === 1 ? '1 camión disponible' : n + ' camiones disponibles';
   }
 
+  // Las marcas que trabajas. Para mostrar el logo de una marca, pon el archivo en public/marcas/ y escribe su nombre aquí (ej. logo:'marcas/hino.png').
+  const BRANDS = [
+    {name:'FAW'}, {name:'Foton'}, {name:'JAC'}, {name:'Hino'}, {name:'Chevrolet'}, {name:'Sinotruk'}
+  ];
+  const norm = x => String(x || '').trim().toLowerCase();
+  function pickBrand(name) {
+    const sel = $('#f-marca');
+    const opt = [...sel.options].find(o => norm(o.value) === norm(name));
+    sel.value = opt ? opt.value : '';
+    F.marca = sel.value; render();
+    document.getElementById('catalogo').scrollIntoView();
+  }
+  function pickUsed() {
+    document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x.dataset.estado === 'Usado'));
+    F.estado = 'Usado'; render();
+    document.getElementById('catalogo').scrollIntoView();
+  }
+  function brands() {
+    const g = $('#brand-grid'); g.innerHTML = '';
+    const fl = $('#f-brands'); fl.innerHTML = '';
+    BRANDS.forEach(b => {
+      const n = ALL.filter(c => !c.vendido && norm(c.marca) === norm(b.name)).length;
+      const el = document.createElement('button'); el.type = 'button'; el.className = 'bt';
+      el.innerHTML = `<span class="wm">${b.logo ? `<img src="${esc(b.logo)}" alt="${esc(b.name)}">` : esc(b.name)}</span>
+        <span class="n ${n ? 'on' : ''}">${n ? (n === 1 ? '1 disponible' : n + ' disponibles') : 'Pregúntanos'}</span>`;
+      el.onclick = () => n ? pickBrand(b.name) : window.open(wa(`Hola, estoy buscando un camión ${b.name}. ¿Qué tienen disponible?`), '_blank');
+      g.appendChild(el);
+      const li = document.createElement('li'); const lb = document.createElement('button'); lb.type = 'button'; lb.textContent = b.name;
+      lb.onclick = el.onclick; li.appendChild(lb); fl.appendChild(li);
+    });
+    const used = ALL.filter(c => !c.vendido && c.estado === 'Usado').length;
+    const u = document.createElement('button'); u.type = 'button'; u.className = 'bt bt-used';
+    u.innerHTML = `<div><b>Usados revisados</b><span>Todos con peritaje de Camión Oriental antes de publicarse.</span></div><span class="go">${used === 1 ? 'Ver 1 usado' : 'Ver ' + used + ' usados'} →</span>`;
+    u.onclick = pickUsed; g.appendChild(u);
+  }
   function featured() {
     const c = ALL.find(x => x.destacado && !x.vendido) || ALL.find(x => !x.vendido);
-    const box = $('#feat'); box.innerHTML = '';
-    if (!c) return;
-    const lab = document.createElement('p'); lab.className = 'feat-label'; lab.textContent = 'Destacado de la semana';
-    box.append(lab, card(c));
+    const pin = $('#pin'); pin.hidden = !c; if (!c) return;
+    pin.innerHTML = `<img alt="">${''}<div><small>Destacado</small><b>${esc(name(c))} ${esc(c.anio || '')}</b><span>${esc(price(c))}</span></div>`;
+    if (c.fotos[0]) img(pin.querySelector('img'), c.fotos[0], 160, 120); else pin.querySelector('img').remove();
+    pin.onclick = () => open(c);
   }
 
   /* Ficha y galería */
@@ -744,6 +856,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     ALL = (cs || []).map(c => ({...c, fotos:(c.fotos || []).map(x => typeof x === 'string' ? x : x && x.foto).filter(Boolean),
       caracteristicas:(c.caracteristicas || []).map(x => typeof x === 'string' ? x : x && x.item).filter(Boolean)}));
     fillSelect($('#f-marca'), [...new Set(ALL.map(c => c.marca).filter(Boolean))].sort(), 'Todas las marcas');
+    brands();
     fillSelect($('#f-tipo'), [...new Set(ALL.map(c => c.tipo).filter(Boolean))].sort(), 'Todos los tipos');
     contact(); featured(); render();
     const h = decodeURIComponent(location.hash.slice(1));

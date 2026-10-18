@@ -30,5 +30,6 @@ Ahí mismo puedes activar que te llegue un correo por cada formulario nuevo (For
 | Camiones, fotos, precios           | Panel → Camiones                              |
 | WhatsApp, ciudad, horario, redes   | Panel → Datos de contacto                     |
 | Textos de la página                | `public/index.html` (busca el texto tal cual) |
+| Marcas de la portada (y sus logos) | `public/index.html` → busca `const BRANDS`    |
 | Colores                            | `public/index.html` → `--sky`, `--deep`, `--red` |
 | Campos del formulario del panel    | `public/admin/config.yml`                     |
