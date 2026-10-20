@@ -58,7 +58,7 @@
   "transmision": "",
   "ubicacion": "",
   "precio": 98990000,
-  "negociable": false,
+  "negociable": true,
   "soat": "Nuevo",
   "tecnomecanica": "20 de julio de 2027",
   "llantas": "90 % de vida útil",
@@ -69,7 +69,7 @@
    "Cojinería en cuero",
    "Aire acondicionado",
    "Rines de lujo",
-   "Listo para traspaso, peritaje donde desees"
+   "Listo para traspaso"
   ],
   "peritaje": true,
   "destacado": false,
@@ -87,7 +87,7 @@
    "/uploads/jmc-chr-2023-10.jpg",
    "/uploads/jmc-chr-2023-11.jpg"
   ],
-  "descripcion": "JMC CHR 2023 con furgón de congelación a −25 °C, en excelente estado. Único dueño, 128.510 km, SOAT nuevo y técnico-mecánica hasta julio de 2027. Listo para traspaso, y puedes hacerle el peritaje donde desees.",
+  "descripcion": "JMC CHR 2023 con furgón de congelación a −25 °C, en excelente estado. Único dueño, 128.510 km, SOAT nuevo y técnico-mecánica hasta julio de 2027. Ya tiene peritaje de Camión Oriental y está listo para traspaso. Precio negociable.",
   "fecha": "2026-10-20T18:55:00-05:00",
   "id": "jmc-chr-2023",
   "referencia": "CO-002"
