@@ -84,6 +84,8 @@ collections:
         fields:
           - {label: WhatsApp (con 57 adelante, sin espacios ni +), name: whatsapp, widget: string, hint: 'Ej. 573101234567'}
           - {label: Teléfono como se ve en la página, name: telefono_visible, widget: string, hint: 'Ej. +57 310 123 4567'}
+          - {label: Segundo WhatsApp (con 57 adelante), name: whatsapp2, widget: string, required: false}
+          - {label: Segundo teléfono como se ve en la página, name: telefono_visible2, widget: string, required: false}
           - {label: Correo, name: correo, widget: string, required: false}
           - {label: Ciudad, name: ciudad, widget: string}
           - {label: Dirección, name: direccion, widget: string, required: false}

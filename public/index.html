@@ -247,7 +247,10 @@ footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 footer ul a,footer ul button{color:var(--band-fg);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font:inherit;text-align:left;opacity:.85}
 footer ul a:hover,footer ul button:hover{opacity:1;text-decoration:underline}
 footer p{margin:0 0 6px;color:var(--band-muted)}
-footer .num{font-family:var(--display);font-weight:700;font-size:1.7rem;color:var(--band-fg);letter-spacing:.02em;user-select:all;margin-bottom:10px}
+footer .num{font-family:var(--display);font-weight:700;font-size:1.7rem;color:var(--band-fg);letter-spacing:.02em;user-select:all;font-variant-numeric:tabular-nums}
+footer .tels{display:grid;gap:12px;margin-bottom:14px}
+footer .tel{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+footer .tel .btn{padding:.45em .9em;font-size:.9rem}
 footer a{color:var(--band-fg)}
 .copy{border-top:1px solid var(--band-line)}
 .copy .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding-block:18px;font-size:.85rem;color:var(--band-muted)}
@@ -544,8 +547,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     </div>
     <div>
       <h4>Contáctanos</h4>
-      <p class="num" id="c-tel"></p>
-      <p><a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Abrir WhatsApp</a></p>
+      <div class="tels" id="c-tels"></div>
       <p id="c-mail"></p>
       <p id="c-ciudad"></p>
       <p id="c-dir"></p>
@@ -601,7 +603,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
   const $ = s => document.querySelector(s);
   const COP = new Intl.NumberFormat('es-CO', {style:'currency', currency:'COP', maximumFractionDigits:0});
   const NUM = new Intl.NumberFormat('es-CO');
-  let AJ = {whatsapp:'573000000000', telefono_visible:'+57 300 000 0000', ciudad:'Colombia'};
+  let AJ = {whatsapp:'573114056471', telefono_visible:'311 405 6471', whatsapp2:'573014711007', telefono_visible2:'301 471 1007', ciudad:'Colombia'};
   let ALL = [];
   const F = {estado:'', marca:'', tipo:'', q:'', orden:''};
 
@@ -815,7 +817,9 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
   /* Contacto */
   function contact() {
     document.querySelectorAll('.js-wa').forEach(a => a.href = wa('Hola, vengo de la página de Camión Oriental.'));
-    $('#c-tel').textContent = AJ.telefono_visible || '';
+    const tels = [[AJ.whatsapp, AJ.telefono_visible], [AJ.whatsapp2, AJ.telefono_visible2]].filter(t => t[0]);
+    $('#c-tels').innerHTML = tels.map(([n, v]) => `<div class="tel"><span class="num">${esc(v || n)}</span>
+      <a class="btn btn-wa" href="https://wa.me/${esc(String(n).replace(/\D/g, ''))}?text=${encodeURIComponent('Hola, vengo de la página de Camión Oriental.')}" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>WhatsApp</a></div>`).join('');
     $('#c-mail').innerHTML = AJ.correo ? `<a href="mailto:${esc(AJ.correo)}">${esc(AJ.correo)}</a>` : '';
     $('#c-ciudad').textContent = AJ.ciudad || '';
     $('#c-dir').textContent = AJ.direccion || '';
