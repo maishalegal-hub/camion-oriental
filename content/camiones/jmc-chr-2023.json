@@ -1,0 +1,80 @@
+{
+  "ejemplo": false,
+  "estado": "Usado",
+  "marca": "JMC",
+  "modelo": "CHR",
+  "anio": 2023,
+  "tipo": "Furgón",
+  "carroceria": "Furgón refrigerado (congelación −25 °C)",
+  "configuracion": "4x2",
+  "kilometraje": 128510,
+  "motor": "",
+  "transmision": "",
+  "ubicacion": "",
+  "precio": 98990000,
+  "negociable": false,
+  "soat": "Nuevo",
+  "tecnomecanica": "20 de julio de 2027",
+  "llantas": "90 % de vida útil",
+  "medidas": "Largo 4,0 m × ancho 1,90 m × alto 1,90 m",
+  "caracteristicas": [
+    {
+      "item": "Thermo de congelación hasta −25 °C"
+    },
+    {
+      "item": "Único dueño"
+    },
+    {
+      "item": "Cojinería en cuero"
+    },
+    {
+      "item": "Aire acondicionado"
+    },
+    {
+      "item": "Rines de lujo"
+    },
+    {
+      "item": "Listo para traspaso, peritaje donde desees"
+    }
+  ],
+  "peritaje": true,
+  "destacado": false,
+  "vendido": false,
+  "fotos": [
+    {
+      "foto": "/uploads/jmc-chr-2023-01.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-02.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-03.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-04.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-05.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-06.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-07.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-08.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-09.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-10.jpg"
+    },
+    {
+      "foto": "/uploads/jmc-chr-2023-11.jpg"
+    }
+  ],
+  "descripcion": "JMC CHR 2023 con furgón de congelación a −25 °C, en excelente estado. Único dueño, 128.510 km, SOAT nuevo y técnico-mecánica hasta julio de 2027. Listo para traspaso, y puedes hacerle el peritaje donde desees.",
+  "fecha": "2026-10-20T18:55:00-05:00"
+}

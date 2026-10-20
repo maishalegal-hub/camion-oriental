@@ -116,7 +116,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .brands{background:var(--surface)}
 .brands .sec-head{justify-content:center;text-align:center}
 .brands .sec-head p{margin-inline:auto}
-.brand-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.brand-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:14px}
 .bt{appearance:none;border:1px solid var(--line);background:var(--bg);border-radius:var(--r);padding:28px 12px 18px;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink)}
 .bt:hover{transform:translateY(-3px);border-color:var(--sky);box-shadow:var(--shadow)}
 .bt .wm{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:.08em;line-height:1;text-transform:uppercase;min-height:1.1em;display:flex;align-items:center}
@@ -128,8 +128,9 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .bt-used b{font-family:var(--display);font-style:italic;font-size:1.6rem}
 .bt-used span{color:var(--band-muted);display:block;font-size:.95rem}
 .bt-used .go{font-weight:700;color:#7fd6ff;white-space:nowrap}
-@media (max-width:1000px){.brand-grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:520px){.brand-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.bt .wm{font-size:1.45rem;letter-spacing:.04em}.bt-used{flex-direction:column;align-items:flex-start}}
+@media (max-width:1100px){.brand-grid{display:flex;flex-wrap:wrap;justify-content:center}.bt{flex:0 1 calc(25% - 11px);min-width:0}.bt-used{flex-basis:100%}}
+@media (max-width:760px){.bt{flex-basis:calc(33.333% - 10px)}.bt-used{flex-basis:100%}}
+@media (max-width:520px){.brand-grid{gap:10px}.bt{flex-basis:calc(50% - 5px)}.bt-used{flex-basis:100%}.bt .wm{font-size:1.45rem;letter-spacing:.04em}.bt-used{flex-direction:column;align-items:flex-start}}
 
 /* Quiénes somos: bloque oscuro */
 .about{background:var(--band);color:var(--band-fg)}
@@ -679,7 +680,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
 
   // Las marcas que trabajas. Para mostrar el logo de una marca, pon el archivo en public/marcas/ y escribe su nombre aquí (ej. logo:'marcas/hino.png').
   const BRANDS = [
-    {name:'FAW'}, {name:'Foton'}, {name:'JAC'}, {name:'Hino'}, {name:'Chevrolet'}, {name:'Sinotruk'}
+    {name:'FAW'}, {name:'Foton'}, {name:'JAC'}, {name:'JMC'}, {name:'Hino'}, {name:'Chevrolet'}, {name:'Sinotruk'}
   ];
   const norm = x => String(x || '').trim().toLowerCase();
   function pickBrand(name) {
