@@ -1,6 +1,8 @@
 # Panel de Camión Oriental (Decap CMS)
 backend:
-  name: git-gateway
+  # Se entra con la cuenta de GitHub dueña del repositorio (Netlify hace el inicio de sesión)
+  name: github
+  repo: maishalegal-hub/camion-oriental
   branch: main
   commit_messages:
     create: 'Nuevo camión: {{slug}}'

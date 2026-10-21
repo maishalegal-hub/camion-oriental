@@ -14,11 +14,14 @@ En Netlify, además, se recortan y comprimen al tamaño justo para que carguen r
 La primera foto de la lista es la portada.
 
 ## Activar el panel (una sola vez)
-1. Netlify → tu sitio → **Project configuration → Identity** → **Enable Identity**.
-2. En **Registration**, elige **Invite only** (así nadie más puede crear cuenta).
-3. Más abajo, en **Services → Git Gateway**, haz clic en **Enable Git Gateway**.
-4. En la pestaña **Identity** del sitio, **Invite users** y pon tu correo.
-5. Abre el correo de invitación, crea tu contraseña y entra a `/admin`.
+Al panel se entra con la cuenta de GitHub dueña del repositorio.
+1. GitHub → https://github.com/settings/developers → **OAuth Apps** → **New OAuth App**.
+   - Application name: `Panel Camión Oriental`
+   - Homepage URL: la dirección de la página (ej. `https://camion-oriental.netlify.app`)
+   - Authorization callback URL: `https://api.netlify.com/auth/done`
+   - **Register application**, luego **Generate a new client secret**. Copia el Client ID y el Client secret.
+2. Netlify → el sitio → **Project configuration → Security → OAuth** → **Install provider** → **GitHub** → pega los dos datos → **Install**.
+3. Entra a `tu-página/admin` → **Login with GitHub**.
 
 ## Formulario "Vende tu camión"
 Lo que la gente envía queda en Netlify → tu sitio → **Forms → vender**.
