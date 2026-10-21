@@ -72,8 +72,9 @@ collections:
       - {label: Descripción, name: descripcion, widget: text, required: false, hint: 'Estado general, llantas, mantenimientos, papeles al día, lo que quieras contar.'}
       - {label: Peritaje hecho por Camión Oriental, name: peritaje, widget: boolean, default: true}
       - {label: Destacado (sale primero y en la portada), name: destacado, widget: boolean, default: false}
-      - {label: Vendido (pasa a la pestaña Vendidos), name: vendido, widget: boolean, default: false, hint: 'Márcalo cuando lo vendas. También puedes subir un camión que ya vendiste: créalo normal y marca esta casilla.'}
-      - {label: Fecha de venta, name: fecha_venta, widget: datetime, required: false, hint: 'Opcional. Ordena la pestaña Vendidos del más reciente al más antiguo.'}
+      - {label: Vendido, name: vendido, widget: boolean, default: false, hint: 'Al marcarlo y publicar, en unos minutos se borran solas TODAS las fotos y la ficha de este camión, y queda solo en la pestaña Vendidos con la foto de abajo.'}
+      - {label: Foto para Vendidos (opcional), name: foto_vendido, widget: image, required: false, choose_url: false, hint: 'La única imagen que quedará cuando se venda (por ejemplo, la entrega al nuevo dueño). Si no subes ninguna, se deja la portada.'}
+      - {label: Fecha de venta, name: fecha_venta, widget: datetime, required: false}
       - {label: Fecha de publicación, name: fecha, widget: datetime}
 
   - name: ajustes
@@ -93,3 +94,29 @@ collections:
           - {label: Horario, name: horario, widget: string, required: false}
           - {label: Instagram (enlace completo), name: instagram, widget: string, required: false}
           - {label: Facebook (enlace completo), name: facebook, widget: string, required: false}
+
+  - name: vendidos
+    label: Vendidos
+    label_singular: Camión vendido
+    description: Camiones ya vendidos. Cada uno guarda solo una foto. Aquí también puedes subir camiones que vendiste antes.
+    folder: content/vendidos
+    create: true
+    delete: true
+    extension: json
+    format: json
+    slug: '{{marca}}-{{modelo}}-{{anio}}'
+    summary: '{{marca}} {{modelo}} {{anio}}'
+    sortable_fields: ['fecha_venta', 'marca', 'anio']
+    fields:
+      - {label: Marca, name: marca, widget: string}
+      - {label: Modelo, name: modelo, widget: string}
+      - {label: Año, name: anio, widget: number, value_type: int, min: 1970, max: 2030}
+      - label: Tipo de camión
+        name: tipo
+        widget: select
+        required: false
+        options: [Tractocamión, Doble troque, Camión sencillo, Turbo, Volqueta, Furgón, Planchón, Grúa, Otro]
+      - {label: Carrocería, name: carroceria, widget: string, required: false}
+      - {label: Foto, name: foto, widget: image, choose_url: false, hint: 'Una sola foto: la que quieres que se vea en Vendidos.'}
+      - {label: Fecha de venta, name: fecha_venta, widget: datetime}
+      - {label: Referencia, name: referencia, widget: hidden, required: false}

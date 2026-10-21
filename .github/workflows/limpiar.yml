@@ -1,0 +1,38 @@
+name: Limpiar vendidos y fotos
+on:
+  push:
+    branches: [main]
+    paths: ['content/**', 'public/uploads/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: limpiar
+  cancel-in-progress: false
+jobs:
+  limpiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Pasar vendidos a su ficha corta y borrar fotos que sobran
+        run: node scripts/limpiar.js
+      - name: Achicar fotos muy pesadas (máximo 1600 px)
+        run: |
+          shopt -s nullglob nocaseglob
+          for f in public/uploads/*.jpg public/uploads/*.jpeg public/uploads/*.png public/uploads/*.webp; do
+            if [ "$(stat -c%s "$f")" -gt 450000 ]; then mogrify -auto-orient -strip -resize '1600x1600>' -quality 82 "$f"; echo "Achicada: $f"; fi
+          done
+      - name: Guardar cambios
+        run: |
+          git config user.name "Limpieza automática"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A content public/uploads
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git commit -m "Limpieza automática: vendidos y fotos"
+          git pull --rebase origin main
+          git push origin HEAD:main

@@ -41,8 +41,8 @@
   ],
   "descripcion": "Hino 300 Dutro Pro 2019 con furgón refrigerado, listo para transporte de alimentos y carga perecedera. Kilometraje aproximado de 375.600 km. Precio negociable.",
   "fecha": "2026-10-15T16:45:00-05:00",
-  "id": "hino-300-dutro-pro-2019",
-  "referencia": "CO-001"
+  "referencia": "CO-001",
+  "id": "hino-300-dutro-pro-2019"
  },
  {
   "ejemplo": false,
@@ -89,7 +89,7 @@
   ],
   "descripcion": "JMC CHR 2023 con furgón de congelación a −25 °C, en excelente estado. Único dueño, 128.510 km, SOAT nuevo y técnico-mecánica hasta julio de 2027. Ya tiene peritaje de Camión Oriental y está listo para traspaso. Precio negociable.",
   "fecha": "2026-10-20T18:55:00-05:00",
-  "id": "jmc-chr-2023",
-  "referencia": "CO-002"
+  "referencia": "CO-002",
+  "id": "jmc-chr-2023"
  }
 ]

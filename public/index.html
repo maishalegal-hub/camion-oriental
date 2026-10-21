@@ -649,7 +649,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     el.innerHTML = `
       <div class="ph"><img alt="" loading="lazy" width="800" height="600">
         <div class="badges">
-          <span class="badge ${c.estado === 'Nuevo' ? 'new' : ''}">${esc(c.estado || 'Usado')}</span>
+          ${c.estado ? `<span class="badge ${c.estado === 'Nuevo' ? 'new' : ''}">${esc(c.estado)}</span>` : ''}
           ${c.peritaje ? '<span class="badge ok">Con peritaje</span>' : ''}
           ${c.ejemplo ? '<span class="badge demo">Ejemplo</span>' : ''}
         </div>

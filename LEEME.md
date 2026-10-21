@@ -35,8 +35,12 @@ Ahí mismo puedes activar que te llegue un correo por cada formulario nuevo (For
 | Campos del formulario del panel    | `public/admin/config.yml`                     |
 
 ## Camiones vendidos
-En el panel, abre el camión y marca **Vendido**. Sale del catálogo de disponibles y pasa a la pestaña **Vendidos**.
-Para publicar un camión que ya vendiste antes, créalo como uno nuevo (con sus fotos) y marca **Vendido** desde el principio.
+- **Cuando vendas uno:** en el panel abre el camión, marca **Vendido**, sube si quieres la **Foto para Vendidos** y dale **Publicar**.
+  En unos minutos la limpieza automática (GitHub → pestaña Actions → "Limpiar vendidos y fotos") borra su ficha completa
+  y todas sus fotos, y lo deja en **Vendidos** con una sola foto. Lo hace `scripts/limpiar.js`.
+- **Para subir uno que vendiste antes:** panel → **Vendidos** → nuevo, con una sola foto.
+- La limpieza también achica fotos muy pesadas (máximo 1600 px) y borra fotos que ningún camión usa desde hace más de un día.
+- Las referencias (CO-001, CO-002…) quedan fijas en cada camión, así los enlaces compartidos no cambian.
 
 ## A dónde llegan los contactos
 - Botones de WhatsApp: abren directamente el chat con el número principal (311 405 6471).
