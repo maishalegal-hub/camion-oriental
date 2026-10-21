@@ -12,7 +12,7 @@
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,600;0,700;1,700;1,800&family=Great+Vibes&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;1,700;1,800;1,900&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: cabecera blanca con el logo; portada a dos columnas (titular + camión destacado como ficha) sobre la ola azul del logo;
    catálogo en rejilla con barra de filtros fija; servicios y proceso de venta en bandas; formulario y contacto al final. */
@@ -86,47 +86,36 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
   .brand img{height:44px}
 }
 
-/* Portada: el nombre como protagonista sobre azul noche, con las olas del logo dibujándose de fondo */
-.hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#103a63 0%,#0a2340 45%,#061525 100%);color:#fff;isolation:isolate;text-align:center}
-.hero .waves{position:absolute;left:-5%;right:-5%;bottom:2%;width:110%;height:44%;z-index:-1;pointer-events:none}
-.hero .waves path{fill:none;stroke-linecap:round;stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 2.6s cubic-bezier(.6,.1,.2,1) forwards,drift 14s ease-in-out 2.6s infinite}
-.hero .waves .w1{stroke:#00b4f6;stroke-width:3;opacity:.55}
-.hero .waves .w2{stroke:#006cba;stroke-width:2;opacity:.6;animation-delay:.25s,2.85s}
-.hero .waves .w3{stroke:#00b4f6;stroke-width:1.2;opacity:.3;animation-delay:.5s,3.1s}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.hero .wrap{padding-block:88px 128px;display:flex;flex-direction:column;align-items:center}
-.hero .eyebrow{color:#7fd6ff;letter-spacing:.32em;font-size:.78rem;display:flex;align-items:center;gap:14px}
-.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:42px;height:1px;background:currentColor;opacity:.6}
-.hero h1{margin:26px 0 0;font-family:var(--display);font-style:normal;font-weight:200;text-transform:uppercase;line-height:.86;letter-spacing:.16em;font-size:clamp(3.4rem,11.5vw,10.5rem);display:flex;flex-direction:column;align-items:center;gap:.06em;text-wrap:nowrap;padding-left:.16em}
+/* Portada deportiva: nombre gigante inclinado, ORIENTAL en contorno rojo, líneas de velocidad y franja de marcas */
+.hero{position:relative;overflow:hidden;background:#071a2e;color:#fff;isolation:isolate}
+.hero .glow{position:absolute;right:-8%;top:-30%;width:min(760px,70vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(0,180,246,.28) 0%,rgba(0,180,246,0) 65%);z-index:-1;pointer-events:none}
+.hero .speed{position:absolute;left:0;top:28%;width:1700px;height:400px;opacity:.18;z-index:-1;pointer-events:none}
+.hero .speed g{animation:speed 1.2s linear infinite}
+@keyframes speed{to{transform:translateX(-260px)}}
+.hero .wrap{padding-block:72px 64px}
+.hero .kicker{display:flex;align-items:center;gap:12px;font-size:.88rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#7fd6ff}
+.hero .kicker::before{content:"";width:36px;height:4px;background:var(--red);border-radius:2px;flex:none}
+.hero h1{margin:14px 0 0;font-family:var(--display);font-style:italic;font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:-.01em;display:flex;flex-direction:column;font-size:clamp(5rem,16vw,14.5rem)}
 .hero h1 .a{color:#fff}
-.hero h1 .b{color:#ff4a50;font-weight:300}
-.hero .motto{font-family:"Great Vibes","Snell Roundhand","Apple Chancery",cursive;font-size:clamp(2rem,4.4vw,3.4rem);color:#7fd6ff;line-height:1;margin:10px 0 0;text-shadow:0 6px 30px rgba(0,0,0,.4)}
-.hero .rule{width:min(320px,60%);height:1px;margin:30px auto 0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);border:0}
-.hero p.lead{font-size:1.1rem;color:#c9d9e8;max-width:36em;margin:26px auto 30px}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.hero .btn-ghost{background:rgba(255,255,255,.06);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
-.hero .btn-ghost:hover{background:rgba(255,255,255,.14)}
-.hero .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;margin-top:34px;font-size:.88rem;color:#a9bfd4;letter-spacing:.04em}
-.hero .trust span::before{content:"";display:inline-block;width:6px;height:6px;background:#ff4a50;transform:rotate(45deg);margin-right:10px;vertical-align:2px}
-.hero h1,.hero .motto,.hero .lead,.hero .ctas,.hero .trust{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-.hero .motto{animation-delay:.35s}.hero .lead{animation-delay:.5s}.hero .ctas{animation-delay:.62s}.hero .trust{animation-delay:.74s}
-@keyframes rise{from{transform:translateY(14px);opacity:.001}to{transform:none;opacity:1}}
-.hero .pin{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:84px;display:flex;align-items:center;gap:12px;background:rgba(6,18,32,.6);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 14px 10px 10px;color:#fff;text-decoration:none;cursor:pointer;font:inherit;text-align:left}
-.hero .pin img{width:64px;height:48px;object-fit:cover;border-radius:6px}
-.hero .pin small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7fd6ff}
-.hero .pin b{font-family:var(--display);font-style:italic;font-size:1.2rem;line-height:1.1}
-.hero .pin span{display:block;font-size:.9rem;color:#d3e2ef;font-variant-numeric:tabular-nums}
-.wave{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:70px;z-index:0;pointer-events:none}
-@media (max-width:1180px){.hero .pin{display:none}}
+.hero h1 .b{color:transparent;-webkit-text-stroke:clamp(2px,.22vw,3px) #ff4a50}
+.hero .row{display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;margin-top:24px}
+.hero p.lead{margin:0;max-width:30em;font-size:1.12rem;line-height:1.55;color:#c4d6e6}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .ctas .btn{border-radius:8px;font-style:italic;text-transform:uppercase;letter-spacing:.04em}
+.hero .btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px var(--sky)}
+.hero .btn-ghost:hover{background:rgba(0,180,246,.14)}
+.hero .pin{display:none!important}
+.ticker{background:#00b4f6;overflow:hidden;height:72px;display:flex;align-items:center}
+.ticker .track{display:flex;gap:56px;white-space:nowrap;padding-left:56px;font-family:var(--display);font-style:italic;font-weight:800;font-size:2rem;letter-spacing:.06em;color:#06263f;animation:marquee 30s linear infinite}
+.ticker .track span{flex:none}
+@keyframes marquee{to{transform:translateX(-50%)}}
 @media (max-width:760px){
-  .hero .wrap{padding-block:56px 100px}
-  .hero h1{letter-spacing:.1em;padding-left:.1em;font-size:clamp(2.6rem,14vw,4.2rem)}
-  .hero .eyebrow{letter-spacing:.18em;font-size:.68rem}
-  .hero .eyebrow::before,.hero .eyebrow::after{width:18px}
-  .hero .waves{height:34%;bottom:6%}
+  .hero .wrap{padding-block:48px 44px}
+  .hero h1{font-size:17vw}
+  .hero .kicker{font-size:.72rem;letter-spacing:.14em}
+  .ticker{height:56px}.ticker .track{font-size:1.5rem;gap:36px;padding-left:36px}
 }
-@media (prefers-reduced-motion:reduce){.hero .waves path{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.hero .speed g,.ticker .track{animation:none}}
 
 /* Nuestras marcas */
 .brands{background:var(--surface)}
@@ -375,30 +364,24 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
 
 <main id="inicio">
   <section class="hero" style="padding:0">
-    <svg class="waves" viewBox="0 0 1440 500" preserveAspectRatio="none" aria-hidden="true">
-      <path class="w1" d="M-20 420C220 330 420 300 640 330s420 90 860-60"/>
-      <path class="w2" d="M-20 455C260 360 470 340 690 370s420 70 790-80"/>
-      <path class="w3" d="M-20 380C200 300 400 260 620 290s430 100 880-80"/>
-    </svg>
+    <div class="glow" aria-hidden="true"></div>
+    <svg class="speed" viewBox="0 0 1700 400" aria-hidden="true"><g stroke="#00b4f6" stroke-width="3" stroke-linecap="round"><line x1="40" y1="40" x2="420" y2="40"></line><line x1="520" y1="40" x2="760" y2="40"></line><line x1="900" y1="40" x2="1300" y2="40"></line><line x1="1400" y1="40" x2="1680" y2="40"></line><line x1="140" y1="140" x2="360" y2="140"></line><line x1="460" y1="140" x2="900" y2="140"></line><line x1="1000" y1="140" x2="1200" y2="140"></line><line x1="1300" y1="140" x2="1660" y2="140"></line><line x1="0" y1="250" x2="300" y2="250"></line><line x1="420" y1="250" x2="640" y2="250"></line><line x1="760" y1="250" x2="1180" y2="250"></line><line x1="1300" y1="250" x2="1560" y2="250"></line><line x1="200" y1="350" x2="560" y2="350"></line><line x1="680" y1="350" x2="900" y2="350"></line><line x1="1020" y1="350" x2="1420" y2="350"></line></g></svg>
     <div class="wrap">
-      <div class="eyebrow">Compra y venta de camiones</div>
+      <div class="kicker">Nuevos y usados · Revisados al 100%</div>
       <h1 aria-label="Camión Oriental"><span class="a">Camión</span><span class="b">Oriental</span></h1>
-      <p class="motto">Rodando contigo</p>
-      <hr class="rule">
-      <p class="lead">Camiones nuevos y usados, revisados al 100%. Te acompañamos en toda la compra y, si quieres vender el tuyo, lo movemos con nuestra lista de compradores.</p>
-      <div class="ctas">
-        <a class="btn btn-red" href="#catalogo">Ver camiones disponibles</a>
-        <a class="btn btn-ghost" href="#vender">Quiero vender mi camión</a>
+      <div class="row">
+        <p class="lead">Hacemos el peritaje, te acompañamos en toda la compra y vendemos tu camión con nuestra lista de compradores.</p>
+        <div class="ctas">
+          <a class="btn btn-red" href="#catalogo">Ver camiones</a>
+          <a class="btn btn-ghost" href="#vender">Vender el mío</a>
+        </div>
       </div>
-      <div class="trust"><span>Peritaje propio</span><span>Varias marcas</span><span>Acompañamiento en el traspaso</span></div>
     </div>
     <button type="button" class="pin" id="pin" hidden></button>
-    <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 70V44C240 8 520 0 820 26c230 20 420 22 620-12v56Z" fill="var(--surface)"/>
-    </svg>
   </section>
+  <div class="ticker" aria-label="Marcas: FAW, Foton, JAC, JMC, Hino, Chevrolet y Sinotruk"><div class="track" aria-hidden="true"><span>FAW</span><span aria-hidden="true">✕</span><span>FOTON</span><span aria-hidden="true">✕</span><span>JAC</span><span aria-hidden="true">✕</span><span>JMC</span><span aria-hidden="true">✕</span><span>HINO</span><span aria-hidden="true">✕</span><span>CHEVROLET</span><span aria-hidden="true">✕</span><span>SINOTRUK</span><span aria-hidden="true">✕</span><span>FAW</span><span aria-hidden="true">✕</span><span>FOTON</span><span aria-hidden="true">✕</span><span>JAC</span><span aria-hidden="true">✕</span><span>JMC</span><span aria-hidden="true">✕</span><span>HINO</span><span aria-hidden="true">✕</span><span>CHEVROLET</span><span aria-hidden="true">✕</span><span>SINOTRUK</span><span aria-hidden="true">✕</span></div></div>
 
-  <section class="brands" id="marcas" style="padding-top:40px">
+  <section class="brands" id="marcas">
     <div class="wrap">
       <div class="sec-head">
         <div>
