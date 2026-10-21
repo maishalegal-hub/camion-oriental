@@ -72,7 +72,8 @@ collections:
       - {label: Descripción, name: descripcion, widget: text, required: false, hint: 'Estado general, llantas, mantenimientos, papeles al día, lo que quieras contar.'}
       - {label: Peritaje hecho por Camión Oriental, name: peritaje, widget: boolean, default: true}
       - {label: Destacado (sale primero y en la portada), name: destacado, widget: boolean, default: false}
-      - {label: Vendido (se queda visible con la etiqueta VENDIDO), name: vendido, widget: boolean, default: false}
+      - {label: Vendido (pasa a la pestaña Vendidos), name: vendido, widget: boolean, default: false, hint: 'Márcalo cuando lo vendas. También puedes subir un camión que ya vendiste: créalo normal y marca esta casilla.'}
+      - {label: Fecha de venta, name: fecha_venta, widget: datetime, required: false, hint: 'Opcional. Ordena la pestaña Vendidos del más reciente al más antiguo.'}
       - {label: Fecha de publicación, name: fecha, widget: datetime}
 
   - name: ajustes

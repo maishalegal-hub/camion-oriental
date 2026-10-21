@@ -33,3 +33,12 @@ Ahí mismo puedes activar que te llegue un correo por cada formulario nuevo (For
 | Marcas de la portada (y sus logos) | `public/index.html` → busca `const BRANDS`    |
 | Colores                            | `public/index.html` → `--sky`, `--deep`, `--red` |
 | Campos del formulario del panel    | `public/admin/config.yml`                     |
+
+## Camiones vendidos
+En el panel, abre el camión y marca **Vendido**. Sale del catálogo de disponibles y pasa a la pestaña **Vendidos**.
+Para publicar un camión que ya vendiste antes, créalo como uno nuevo (con sus fotos) y marca **Vendido** desde el principio.
+
+## A dónde llegan los contactos
+- Botones de WhatsApp: abren directamente el chat con el número principal (311 405 6471).
+- Formulario "Vende tu camión": abre WhatsApp con los datos ya escritos y además queda guardado en Netlify → **Forms → vender**.
+  Para recibir también un correo por cada formulario: Netlify → tu sitio → **Project configuration → Notifications → Emails and webhooks → Form submission notifications → Add notification → Email notification**.

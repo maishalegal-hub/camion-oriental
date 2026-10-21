@@ -70,13 +70,14 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .brand{display:flex;align-items:center;background:var(--plate);border-radius:10px;padding:2px 6px;flex:none}
 .brand img{height:60px;width:auto}
 .nav{display:flex;gap:4px;margin-left:auto}
-.nav a{text-decoration:none;font-weight:600;color:var(--muted);padding:.5em .8em;border-radius:8px}
+.nav a{text-decoration:none;font-weight:600;color:var(--muted);padding:.5em .65em;border-radius:8px;white-space:nowrap}
 .nav a:hover{color:var(--ink);background:var(--surface-2)}
 .top .btn-wa,.top .top-cat{padding:.6em 1em}
-@media (max-width:1100px){.top .top-cat{display:none}}
+@media (max-width:1320px){.top .top-cat{display:none}}
+
 .menu-btn{display:none;margin-left:auto;background:none;border:0;padding:10px;cursor:pointer}
 .menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
-@media (max-width:860px){
+@media (max-width:1040px){
   .nav{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:8px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));box-shadow:var(--shadow)}
   .nav.open{display:flex}
   .nav a{padding:.8em .6em;font-size:1.05rem}
@@ -164,6 +165,12 @@ section{padding-block:72px}
 .filters select,.filters input{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.55em 1em;min-width:0;font-weight:500}
 .filters select{padding-right:2.2em;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat}
 .filters input{flex:1 1 200px;max-width:280px}
+.tabs{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.tabs button{border:0;background:none;border-radius:9px;padding:.6em 1.1em;font-weight:700;cursor:pointer;color:var(--muted);font-size:1rem}
+.tabs button span{display:inline-block;min-width:1.6em;padding:0 .4em;margin-left:4px;border-radius:999px;background:var(--surface-2);color:var(--ink);font-size:.85rem;font-variant-numeric:tabular-nums}
+.tabs button[aria-selected="true"]{background:var(--deep);color:#fff}
+.tabs button[aria-selected="true"] span{background:rgba(255,255,255,.22);color:#fff}
+.price b.sold-t{color:var(--muted)}
 .count{margin-left:auto;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 @media (max-width:700px){.filters{position:static}.filters input{max-width:none;flex-basis:100%}.count{margin-left:0;width:100%}}
 
@@ -339,6 +346,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     <nav class="nav" id="nav">
       <a href="#marcas">Marcas</a>
       <a href="#catalogo">Camiones</a>
+      <a href="#vendidos" id="nav-vend">Vendidos</a>
       <a href="#servicios">Servicios</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#vender">Vende tu camión</a>
@@ -405,11 +413,15 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
       <div class="sec-head">
         <div>
           <div class="eyebrow">Catálogo</div>
-          <h2 style="margin-top:8px">Camiones disponibles</h2>
-          <p>Toca cualquier camión para ver todas sus fotos, la ficha técnica y escribirnos por WhatsApp.</p>
+          <h2 style="margin-top:8px" id="cat-title">Camiones disponibles</h2>
+          <p id="cat-sub">Toca cualquier camión para ver todas sus fotos, la ficha técnica y escribirnos por WhatsApp.</p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Disponibles o vendidos" id="vendidos">
+          <button type="button" role="tab" id="tab-disp" aria-selected="true">Disponibles <span id="n-disp"></span></button>
+          <button type="button" role="tab" id="tab-vend" aria-selected="false">Vendidos <span id="n-vend"></span></button>
         </div>
       </div>
-      <div class="filters">
+      <div class="filters" id="filters">
         <div class="row">
           <div class="seg" role="group" aria-label="Nuevo o usado">
             <button type="button" data-estado="" aria-pressed="true">Todos</button>
@@ -509,8 +521,8 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
         <label>¿Dónde está el camión?<input id="v-ciudad" name="ciudad" placeholder="Ciudad"></label>
         <label class="full">¿Cuánto esperas recibir? (opcional)<input id="v-precio" name="precio_esperado" inputmode="numeric" placeholder="Ej. 250000000"></label>
         <label class="full">Algo más que debamos saber<textarea id="v-msg" name="mensaje" placeholder="Estado general, papeles, si está trabajando, etc."></textarea></label>
-        <button class="btn btn-red" type="submit" id="v-send">Enviar datos de mi camión</button>
-        <p class="note full">Usamos tus datos solo para contactarte sobre la venta de tu camión.</p>
+        <button class="btn btn-wa" type="submit" id="v-send"><svg><use href="#i-wa"/></svg>Enviar por WhatsApp</button>
+        <p class="note full">Al enviar se abre WhatsApp con tus datos ya escritos. Los usamos solo para contactarte sobre la venta de tu camión.</p>
         <div class="done" id="v-done" hidden></div>
       </form>
     </div>
@@ -605,7 +617,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
   const NUM = new Intl.NumberFormat('es-CO');
   let AJ = {whatsapp:'573114056471', telefono_visible:'311 405 6471', whatsapp2:'573014711007', telefono_visible2:'301 471 1007', ciudad:'Colombia'};
   let ALL = [];
-  const F = {estado:'', marca:'', tipo:'', q:'', orden:''};
+  const F = {estado:'', marca:'', tipo:'', q:'', orden:'', vista:'disp'};
 
   // Las fotos se muestran siempre en el mismo formato (4:3). En Netlify, además, se recortan y se
   // comprimen al tamaño justo con su servicio de imágenes; si no está disponible, se usa la foto original.
@@ -647,7 +659,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
         <ul class="specs">
           ${c.anio ? `<li>Modelo ${esc(c.anio)}</li>` : ''}${km ? `<li>${km}</li>` : ''}${c.ubicacion ? `<li>${esc(c.ubicacion)}</li>` : ''}
         </ul>
-        <div class="price"><b>${price(c)}${c.negociable && c.precio ? '<em>Negociable</em>' : ''}</b><span>Ver fotos →</span></div>
+        <div class="price">${c.vendido ? '<b class="sold-t">Vendido</b>' : `<b>${price(c)}${c.negociable && c.precio ? '<em>Negociable</em>' : ''}</b>`}<span>Ver fotos →</span></div>
       </div>`;
     const im = el.querySelector('img');
     if (c.fotos[0]) img(im, c.fotos[0], 800, 600); else im.remove();
@@ -663,7 +675,21 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
 
   function render() {
     const q = F.q.trim().toLowerCase();
-    let list = ALL.filter(c =>
+    const vend = F.vista === 'vend';
+    $('#n-disp').textContent = ALL.filter(c => !c.vendido).length;
+    $('#n-vend').textContent = ALL.filter(c => c.vendido).length;
+    $('#tab-disp').setAttribute('aria-selected', !vend); $('#tab-vend').setAttribute('aria-selected', vend);
+    $('#filters').hidden = vend;
+    $('#cat-title').textContent = vend ? 'Camiones vendidos' : 'Camiones disponibles';
+    $('#cat-sub').textContent = vend ? 'Camiones que ya entregamos a sus nuevos dueños. Si buscas uno parecido, escríbenos y te lo conseguimos.' : 'Toca cualquier camión para ver todas sus fotos, la ficha técnica y escribirnos por WhatsApp.';
+    if (vend) {
+      const sl = ALL.filter(c => c.vendido).sort((a,b) => new Date(b.fecha_venta || b.fecha || 0) - new Date(a.fecha_venta || a.fecha || 0));
+      const g = $('#grid'); g.innerHTML = '';
+      if (!sl.length) g.innerHTML = '<div class="empty"><b>Aún no hay camiones vendidos publicados.</b>Aquí verás los camiones que ya entregamos a sus nuevos dueños.</div>';
+      else sl.forEach(c => g.appendChild(card(c)));
+      return;
+    }
+    let list = ALL.filter(c => !c.vendido &&
       (!F.estado || c.estado === F.estado) &&
       (!F.marca || c.marca === F.marca) &&
       (!F.tipo || c.tipo === F.tipo) &&
@@ -689,12 +715,12 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     const sel = $('#f-marca');
     const opt = [...sel.options].find(o => norm(o.value) === norm(name));
     sel.value = opt ? opt.value : '';
-    F.marca = sel.value; render();
+    F.marca = sel.value; F.vista = 'disp'; render();
     document.getElementById('catalogo').scrollIntoView();
   }
   function pickUsed() {
     document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x.dataset.estado === 'Usado'));
-    F.estado = 'Usado'; render();
+    F.estado = 'Usado'; F.vista = 'disp'; render();
     document.getElementById('catalogo').scrollIntoView();
   }
   function brands() {
@@ -760,7 +786,10 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     $('#d-feat').hidden = !(c.caracteristicas || []).length;
     $('#d-desc').textContent = c.descripcion || '';
     $('#d-desc').hidden = !c.descripcion;
-    $('#d-wa').href = wa(`Hola, me interesa el ${name(c)} ${c.anio || ''} (Ref. ${c.referencia}) que vi en la página de Camión Oriental.`);
+    $('#d-wa').href = c.vendido
+      ? wa(`Hola, vi en su página el ${name(c)} ${c.anio || ''} que ya vendieron (Ref. ${c.referencia}). Estoy buscando uno parecido.`)
+      : wa(`Hola, me interesa el ${name(c)} ${c.anio || ''} (Ref. ${c.referencia}) que vi en la página de Camión Oriental.`);
+    $('#d-wa').innerHTML = c.vendido ? '<svg><use href="#i-wa"/></svg>Busco uno parecido' : '<svg><use href="#i-wa"/></svg>Me interesa<span class="lg">&nbsp;este camión</span>';
     $('#d-copied').textContent = '';
     if (!det.open) { if (det.showModal) det.showModal(); else det.setAttribute('open', ''); }
     show(0);
@@ -805,12 +834,16 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x === b));
     F.estado = b.dataset.estado; render();
   });
+  function setVista(v) { F.vista = v; render(); }
+  $('#tab-disp').onclick = () => setVista('disp');
+  $('#tab-vend').onclick = () => setVista('vend');
   $('#f-marca').onchange = e => { F.marca = e.target.value; render(); };
   $('#f-tipo').onchange = e => { F.tipo = e.target.value; render(); };
   $('#f-orden').onchange = e => { F.orden = e.target.value; render(); };
   $('#f-q').oninput = e => { F.q = e.target.value; render(); };
 
   /* Menú móvil */
+  document.querySelectorAll('a[href="#vendidos"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); setVista('vend'); document.getElementById('catalogo').scrollIntoView(); }));
   $('#menu-btn').onclick = () => { const o = $('#nav').classList.toggle('open'); $('#menu-btn').setAttribute('aria-expanded', o); };
   $('#nav').addEventListener('click', e => { if (e.target.tagName === 'A') { $('#nav').classList.remove('open'); $('#menu-btn').setAttribute('aria-expanded', false); } });
 
@@ -828,11 +861,21 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
   }
   $('#yr').textContent = new Date().getFullYear();
 
-  /* Formulario de venta: queda guardado en Netlify (Forms) y ofrece seguir por WhatsApp */
+  /* Formulario de venta: abre WhatsApp con los datos ya escritos y además los guarda en Netlify (Forms) */
   $('#sell-form').addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target, d = new FormData(f), btn = $('#v-send');
-    const resumen = `Hola, quiero vender mi camión: ${d.get('marca')} ${d.get('modelo') || ''} ${d.get('anio') || ''}, ${d.get('tipo')}, ${d.get('kilometraje') ? d.get('kilometraje') + ' km' : ''} en ${d.get('ciudad') || '—'}. Soy ${d.get('nombre')}, cel. ${d.get('telefono')}.`;
+    const g = k => (d.get(k) || '').toString().trim();
+    const resumen = ['Hola, quiero vender mi camión:',
+      `• ${[g('marca'), g('modelo'), g('anio')].filter(Boolean).join(' ')} (${g('tipo')})`,
+      g('kilometraje') && `• Kilometraje: ${g('kilometraje')} km`,
+      g('ciudad') && `• Está en: ${g('ciudad')}`,
+      g('precio_esperado') && `• Espero recibir: ${g('precio_esperado')}`,
+      g('mensaje') && `• ${g('mensaje')}`,
+      `Soy ${g('nombre')}, cel. ${g('telefono')}.`].filter(Boolean).join('\n');
+    const link = wa(resumen);
+    // Se abre en el mismo toque para que el celular no lo bloquee
+    const win = window.open(link, '_blank');
     btn.disabled = true; btn.textContent = 'Enviando…';
     let ok = false;
     try {
@@ -840,14 +883,14 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
       ok = r.ok;
     } catch (err) {}
     const done = $('#v-done'); done.hidden = false;
-    done.innerHTML = ok
-      ? '<p>Recibimos los datos de tu camión. Te llamamos pronto para agendar el peritaje.</p><p>Si quieres adelantar, mándanos fotos por WhatsApp:</p>'
-      : '<p>No pudimos enviar el formulario desde aquí. Mándanos los mismos datos por WhatsApp con un toque:</p>';
+    done.innerHTML = win
+      ? '<p>Te abrimos WhatsApp con los datos de tu camión. Solo dale <b>Enviar</b> y mándanos fotos por ahí mismo.</p><p>¿No se abrió? Toca aquí:</p>'
+      : '<p>Recibimos tus datos. Para terminar, mándanoslos por WhatsApp con un toque:</p>';
     const a = document.createElement('a'); a.className = 'btn btn-wa'; a.target = '_blank'; a.rel = 'noopener';
-    a.href = wa(resumen); a.innerHTML = '<svg><use href="#i-wa"/></svg>Enviar por WhatsApp';
+    a.href = link; a.innerHTML = '<svg><use href="#i-wa"/></svg>Enviar por WhatsApp';
     done.appendChild(a);
     if (ok) f.querySelectorAll('input:not([type=hidden]),textarea').forEach(i => i.value = '');
-    btn.disabled = false; btn.textContent = 'Enviar datos de mi camión';
+    btn.disabled = false; btn.innerHTML = '<svg><use href="#i-wa"/></svg>Enviar por WhatsApp';
   });
 
   /* Carga de datos */
@@ -865,6 +908,7 @@ table.sp tr+tr th,table.sp tr+tr td{border-top:1px solid var(--line)}
     fillSelect($('#f-tipo'), [...new Set(ALL.map(c => c.tipo).filter(Boolean))].sort(), 'Todos los tipos');
     contact(); featured(); render();
     const h = decodeURIComponent(location.hash.slice(1));
+    if (h === 'vendidos') { setVista('vend'); document.getElementById('catalogo').scrollIntoView(); }
     const c = h && ALL.find(x => x.referencia === h);
     if (c) open(c, true);
   })();
